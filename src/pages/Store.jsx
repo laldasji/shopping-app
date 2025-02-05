@@ -24,11 +24,11 @@ function Store() {
                                 </button>
                                 : <div className="h-12 border-slate-700 border-4 self-center absolute bottom-2 w-[calc(100%-1rem)] rounded-full">
                                     <button className="bg-slate-700 h-full aspect-3/2 cursor-pointer absolute -left-0.75 top-0 rounded-l-full" onClick={() => {decreaseCount(element, itemsAdded, setItemsAdded)}}>
-                                        <img src="/public/icons/svg/decrease.svg" alt="" className="h-3/5 m-auto" />
+                                        <img src="/icons/svg/decrease.svg" alt="" className="h-3/5 m-auto" />
                                     </button>
                                     <h1 className="w-min m-auto text-slate-700">{itemsAdded.find(item => item.id === element.id).count}</h1>
                                     <button className="bg-slate-700 h-full aspect-3/2 cursor-pointer absolute -right-0.75 top-0 rounded-r-full" onClick={() => {increaseCount(element, itemsAdded, setItemsAdded)}}>
-                                        <img src="/public/icons/svg/increase.svg" alt="" className="h-3/5 m-auto" />
+                                        <img src="/icons/svg/increase.svg" alt="" className="h-3/5 m-auto" />
                                     </button>
                                 </div>
                         }
