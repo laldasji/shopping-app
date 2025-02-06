@@ -2,7 +2,7 @@ import { useOutletContext } from "react-router-dom";
 import { increaseCount, decreaseCount } from "./changeItemCount";
 
 function Cart() {
-    const {itemsList, itemsAdded, setItemsAdded } = useOutletContext();
+    const {itemsList, itemsAdded, setItemsAdded, cartValue, setCartValue } = useOutletContext();
     if (itemsAdded.length > 0)
         return (
         <div className="p-5 flex flex-col place-items-center bg-gray-100">
@@ -20,11 +20,11 @@ function Cart() {
                                     {currentItem.description.length > 400 ? currentItem.description.slice(0, 397) + '...' : currentItem.description}
                                 </p>
                                 <div className="h-12 border-slate-700 border-4 self-center absolute bottom-2 w-full rounded-full">
-                                    <button className="bg-slate-700 h-full aspect-3/2 cursor-pointer absolute -left-0.75 top-0 rounded-l-full" onClick={() => {decreaseCount(element, itemsAdded, setItemsAdded)}}>
+                                    <button className="bg-slate-700 h-full aspect-3/2 cursor-pointer absolute -left-0.75 top-0 rounded-l-full" onClick={() => {decreaseCount(currentItem, itemsAdded, setItemsAdded, cartValue, setCartValue)}}>
                                         <img src="/icons/svg/decrease.svg" alt="" className="h-3/5 m-auto" />
                                     </button>
                                     <h1 className="w-min m-auto text-slate-700">{itemsAdded.find(item => item.id === element.id).count}</h1>
-                                    <button className="bg-slate-700 h-full aspect-3/2 cursor-pointer absolute -right-0.75 top-0 rounded-r-full" onClick={() => {increaseCount(element, itemsAdded, setItemsAdded)}}>
+                                    <button className="bg-slate-700 h-full aspect-3/2 cursor-pointer absolute -right-0.75 top-0 rounded-r-full" onClick={() => {increaseCount(currentItem, itemsAdded, setItemsAdded, cartValue, setCartValue)}}>
                                         <img src="/icons/svg/increase.svg" alt="" className="h-3/5 m-auto" />
                                     </button>
                                 </div>
@@ -33,6 +33,11 @@ function Cart() {
                     }
                 )
             }
+            <div className="m-10 p-10 w-9/10 h-9/10 relative bg-white shadow shadow-slate-400 hover:shadow-2xl duration-200 max-w-full items-center
+                        md:grid md:grid-cols-[1fr_2fr] sm:flex sm:flex-col">
+                <h1 className="font-black">Total: ${cartValue}</h1>
+                <button className="bg-yellow-300 w-max p-2 justify-self-end duration-200 active:bg-yellow-200">Mock Order Button</button>
+            </div>
         </div>
     ) 
     else {

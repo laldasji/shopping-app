@@ -5,6 +5,8 @@ function NavBar() {
   const [itemsAdded, setItemsAdded] = useState([]);
   const [itemsList, setItemsList] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [cartValue, setCartValue] = useState(0);
+
   useEffect(() => {
       fetch('https://fakestoreapi.com/products')
       .then(response => response.json())
@@ -45,7 +47,7 @@ function NavBar() {
           </button>
         </Link>
       </div>
-      <Outlet context={{itemsList, loaded, itemsAdded, setItemsAdded}}/>
+      <Outlet context={{itemsList, loaded, itemsAdded, setItemsAdded, cartValue, setCartValue}}/>
     </>
   );
 }

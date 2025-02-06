@@ -2,7 +2,7 @@ import { useOutletContext } from "react-router-dom";
 import { increaseCount, decreaseCount } from "./changeItemCount";
 
 function Store() {
-    const { itemsList, loaded, itemsAdded, setItemsAdded } = useOutletContext();
+    const { itemsList, loaded, itemsAdded, setItemsAdded, cartValue, setCartValue } = useOutletContext();
     return (
     <div className="p-5 grid grid-cols-[repeat(auto-fit,_minmax(375px,1fr))] auto-rows-[650px] place-items-center h-min bg-gray-100">
         {
@@ -18,16 +18,16 @@ function Store() {
                         {
                             !itemsAdded.some(item => item.id === element.id) ?
                                 <button className="h-12 bg-slate-700 self-center absolute bottom-2 w-[calc(100%-1rem)] flex justify-center items-center rounded-full cursor-pointer"
-                                onClick={() => {increaseCount(element, itemsAdded, setItemsAdded)}}>
+                                onClick={() => {increaseCount(element, itemsAdded, setItemsAdded, cartValue, setCartValue)}}>
                                     <p className="text-slate-300 m-3">Add to Cart</p>
                                     <img className="h-3/5" src="/icons/svg/add-to-cart.svg" alt="Add to Cart" />
                                 </button>
                                 : <div className="h-12 border-slate-700 border-4 self-center absolute bottom-2 w-[calc(100%-1rem)] rounded-full">
-                                    <button className="bg-slate-700 h-full aspect-3/2 cursor-pointer absolute -left-0.75 top-0 rounded-l-full" onClick={() => {decreaseCount(element, itemsAdded, setItemsAdded)}}>
+                                    <button className="bg-slate-700 h-full aspect-3/2 cursor-pointer absolute -left-0.75 top-0 rounded-l-full" onClick={() => {decreaseCount(element, itemsAdded, setItemsAdded, cartValue, setCartValue)}}>
                                         <img src="/icons/svg/decrease.svg" alt="" className="h-3/5 m-auto" />
                                     </button>
                                     <h1 className="w-min m-auto text-slate-700">{itemsAdded.find(item => item.id === element.id).count}</h1>
-                                    <button className="bg-slate-700 h-full aspect-3/2 cursor-pointer absolute -right-0.75 top-0 rounded-r-full" onClick={() => {increaseCount(element, itemsAdded, setItemsAdded)}}>
+                                    <button className="bg-slate-700 h-full aspect-3/2 cursor-pointer absolute -right-0.75 top-0 rounded-r-full" onClick={() => {increaseCount(element, itemsAdded, setItemsAdded, cartValue, setCartValue)}}>
                                         <img src="/icons/svg/increase.svg" alt="" className="h-3/5 m-auto" />
                                     </button>
                                 </div>
